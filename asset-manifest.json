@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/login-auth-note-app-react/static/css/main.305f5679.css",
+    "main.js": "/login-auth-note-app-react/static/js/main.e617f1fb.js",
+    "static/js/453.8ab44547.chunk.js": "/login-auth-note-app-react/static/js/453.8ab44547.chunk.js",
+    "index.html": "/login-auth-note-app-react/index.html",
+    "main.305f5679.css.map": "/login-auth-note-app-react/static/css/main.305f5679.css.map",
+    "main.e617f1fb.js.map": "/login-auth-note-app-react/static/js/main.e617f1fb.js.map",
+    "453.8ab44547.chunk.js.map": "/login-auth-note-app-react/static/js/453.8ab44547.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.305f5679.css",
+    "static/js/main.e617f1fb.js"
+  ]
+}
