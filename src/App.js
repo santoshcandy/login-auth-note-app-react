@@ -1,7 +1,7 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import {BrowserRouter,Routes , Route, Navigate} from 'react-router-dom'
+import { HashRouter,Routes , Route, Navigate} from 'react-router-dom'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import Register from './pages/Register'
@@ -28,7 +28,8 @@ function RegisterAndLogout(){
   const App = () => {
    return (
       <>
-       <BrowserRouter>
+      
+       <HashRouter>
       <Routes>
         <Route path='/' element={
           <ProtectedRoute>
@@ -44,7 +45,7 @@ function RegisterAndLogout(){
 
       </Routes>
 
-      </BrowserRouter>
+      </HashRouter>
        
       </>
      
