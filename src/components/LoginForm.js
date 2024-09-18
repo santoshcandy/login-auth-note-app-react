@@ -6,6 +6,7 @@ import { ACCESS_TOKEN , REFRESH_TOKEN } from '../constants';
 import { useNavigate } from 'react-router-dom';
 import React from 'react'
 import LoadingIndicator from './LoadingIndicator';
+import { Link } from 'react-router-dom';
  
  const LoginForm = ({route , method}) => {
     
@@ -27,7 +28,7 @@ import LoadingIndicator from './LoadingIndicator';
 
     try{
         const req = await api.post(route,{username,password})
-        if(method=="login"){
+        if(method==="login"){
             localStorage.setItem(ACCESS_TOKEN , req.data.access);
             localStorage.setItem(REFRESH_TOKEN , req.data.refresh);
             navigate('/')
@@ -75,6 +76,17 @@ console.log('Password:', password); // Verify the password value
         <Button variant="primary" type="submit" className="w-100">
           {name}
         </Button>
+        <div className="mt-3 text-center">
+          {method === 'login' && (
+            <>
+              <Link to="/forgot-password" className="d-block">Forgot Password?</Link>
+              <Link to="/register" className="d-block">Create New Account</Link>
+            </>
+          )}
+          {method === 'register' && (
+            <Link to="/login" className="d-block">Already have an account? Login</Link>
+          )}
+        </div>
       </Form>
     </Container>
   );

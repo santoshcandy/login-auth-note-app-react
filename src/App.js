@@ -7,11 +7,8 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import NotFound from './pages/NotFound'
 import ProtectedRoute from './components/ProtectedRoute'
+import ForgetPassword from './pages/ForgetPassword';
 
-function logout(){
-  localStorage.clear()
-  return <Navigate to='/login'/>
-}
 
 function RegisterAndLogout(){
   localStorage.clear()
@@ -34,12 +31,13 @@ function RegisterAndLogout(){
         <Route path='/' element={
           <ProtectedRoute>
 
-            <Home/>
+            <Home />
           </ProtectedRoute>
           }/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/register' element={<Register/>}/>
         <Route path='*' element={<NotFound/>}/>
+        <Route path='/forgot-password' element={<ForgetPassword/>}/>
 
 
 

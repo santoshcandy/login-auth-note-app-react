@@ -4,6 +4,7 @@ import api from "../api"
 import { REFRESH_TOKEN,ACCESS_TOKEN } from "../constants"
 
 import React, { useState , useEffect} from 'react'
+import LoadingIndicator from "./LoadingIndicator"
 
 const ProtectedRoute = ({children}) => {
 
@@ -20,7 +21,7 @@ const ProtectedRoute = ({children}) => {
             const res = await api.post('/api/token/refresh',{
                 refresh: refreshToken
             });
-            if(res.status==200){
+            if(res.status===200){
                 localStorage.setItem(ACCESS_TOKEN, res.data.access)
                 setIsAuthorized(true)
             }else{
@@ -55,7 +56,7 @@ const ProtectedRoute = ({children}) => {
 
 
     if(isAuthorized ==null){
-        return <div>Loading...</div>
+        return  <LoadingIndicator/>
     }
 
     return isAuthorized?children:<Navigate to='/Login'/>

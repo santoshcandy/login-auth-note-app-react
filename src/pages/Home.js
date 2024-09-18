@@ -4,9 +4,12 @@ import api from '../api'
 import React, { useState } from 'react';
 import { Form, Button, Container, ListGroup, Row, Col } from 'react-bootstrap';
 import Note from '../components/Note';
+import {  Navigate } from 'react-router-dom';
  
 
 const Home = () => {
+   
+ 
   const [notes, setNotes] = useState([]);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
@@ -22,8 +25,7 @@ const Home = () => {
     .catch((err)=>alert)
   }
 
-console.log(notes)
-
+ 
   const handleAddNote = (e) => {
     e.preventDefault()
         api.post("/api/notes/",{content,title}).then((res)=>{
@@ -42,10 +44,15 @@ console.log(notes)
         getNotes()
     
   };
+  function logout(){
+    localStorage.clear()
+    return <Navigate to='/login'/>
+  }
+  
 
   const handleDeleteNote = (id) => {
     api.delete(`/api/notes/delete/${id}`).then((res)=>{
-      if(res.status==204){
+      if(res.status===204){
         alert('note deleted')
       }else{
         alert("failed to delete")
@@ -68,8 +75,7 @@ console.log(notes)
                 value={title}
                 name = 'title'
                 required
-                id='title'
-                onChange={(e) => setTitle(e.target.value)}
+                 onChange={(e) => setTitle(e.target.value)}
               />
             </Form.Group>
             <Form.Group controlId="formContent">
@@ -97,24 +103,17 @@ console.log(notes)
             
            {notes.map((e)=>(
             <>
-             <Note note={e} onDelete={handleDeleteNote}  />
+             <Note note={e} onDelete={handleDeleteNote} key={e.id} />
             </>
            ))}
 
-            {/* {notes.map((note, index) => (
-              <ListGroup.Item key={index} className="d-flex justify-content-between align-items-center">
-                <div>
-                  <h5>{note.title}</h5>
-                  <p>{note.content}</p>
-                </div>
-                <Button variant="danger" onClick={() => handleDeleteNote(index)}>
-                  Delete
-                </Button>
-              </ListGroup.Item>
-            ))} */}
+            
           </ListGroup>
         </Col>
       </Row>
+      <button onClick={logout} className="btn btn-danger">
+            Logout
+        </button>
     </Container>
   );
 }
