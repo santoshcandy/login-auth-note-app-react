@@ -36,6 +36,8 @@ const navigate = useNavigate()
           });
           
           setMessage('Password updated successfully.');
+          navigate('/login/')
+
 
         } catch (error) {
           setError('Failed to update the password. Please try again.');

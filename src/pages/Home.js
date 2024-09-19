@@ -4,12 +4,12 @@ import api from '../api'
 import React, { useState } from 'react';
 import { Form, Button, Container, ListGroup, Row, Col } from 'react-bootstrap';
 import Note from '../components/Note';
-import {  Navigate } from 'react-router-dom';
+import {  Navigate, useNavigate } from 'react-router-dom';
  
 
 const Home = () => {
    
- 
+ const navigate = useNavigate()
   const [notes, setNotes] = useState([]);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
@@ -46,6 +46,7 @@ const Home = () => {
   };
   function logout(){
     localStorage.clear()
+     navigate('/login/')
     return <Navigate to='/login'/>
   }
   

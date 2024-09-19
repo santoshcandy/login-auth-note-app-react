@@ -1,4 +1,4 @@
-import {Navigate} from "react-router-dom"
+import {Navigate, useNavigate} from "react-router-dom"
 import {jwtDecode} from "jwt-decode"
 import api from "../api"
 import { REFRESH_TOKEN,ACCESS_TOKEN } from "../constants"
@@ -9,6 +9,7 @@ import LoadingIndicator from "./LoadingIndicator"
 const ProtectedRoute = ({children}) => {
 
     const [isAuthorized , setIsAuthorized] = useState(null)
+    const navigate = useNavigate()
 
 
     useEffect(()=>{
@@ -56,7 +57,13 @@ const ProtectedRoute = ({children}) => {
 
 
     if(isAuthorized ==null){
-        return  <LoadingIndicator/>
+        return(
+            <>
+
+        <LoadingIndicator/>
+         {navigate('/login/')}
+        </> 
+        )
     }
 
     return isAuthorized?children:<Navigate to='/Login'/>
