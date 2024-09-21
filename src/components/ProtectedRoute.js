@@ -2,6 +2,7 @@ import {Navigate, useNavigate} from "react-router-dom"
 import {jwtDecode} from "jwt-decode"
 import api from "../api"
 import { REFRESH_TOKEN,ACCESS_TOKEN } from "../constants"
+import { Button } from "react-bootstrap"
 
 import React, { useState , useEffect} from 'react'
 import LoadingIndicator from "./LoadingIndicator"
@@ -30,11 +31,12 @@ const ProtectedRoute = ({children}) => {
             }
 
         }catch(error){
-
         }
+  }
 
-
-    }
+  function loginagain(){
+    navigate('/login/')
+  }
 
 
     const auth= async ()=>{
@@ -61,8 +63,11 @@ const ProtectedRoute = ({children}) => {
             <>
 
         <LoadingIndicator/>
-         {navigate('/login/')}
-        </> 
+        <h4>token expired please login</h4>
+        <Button variant="primary" onClick={loginagain} className="w-100">
+          Login
+        </Button>
+         </> 
         )
     }
 
